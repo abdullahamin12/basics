@@ -31,4 +31,11 @@ def remove(item_id: int):
             todos.remove(todo)
             return {"done": "deleted permanently"}
     return {"not found": "item not found"}
-            
+@app.put("/todos/{item_id}")
+def update(item_id: int, todo: Todo):
+    for i, t in enumerate(todos):
+        if t["id"] == item_id:
+            updated_todo = {"id": item_id, **todo.model_dump()}
+            todos[i] = updated_todo
+            return updated_todo
+    return {"error": "item not found"}           
