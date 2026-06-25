@@ -1,17 +1,16 @@
-class Solution:
-    def isValidself(self,x):
-        bool=False
-        for i in range(len(x)-1):
-            if x[i]==x[::-1]:
-                bool=True
-            elif x[i]==x[i+1]:
-                bool=True
-            else:
-                bool=False
-                break
-        return bool
+from fastapi import FastAPI
 
-s=Solution()
-a=s.isValidself("()[]{}")
-        
- 
+app = FastAPI()
+
+items = [
+    {"id": 1, "name": "Ali", "age": 20},
+    {"id": 2, "name": "Sara", "age": 22}
+]
+
+@app.delete("/items/{item_id}")
+def delete_item(item_id: int):
+    for item in items:
+        if item["id"] == item_id:
+            items.remove(item)
+            return {"message": "Item deleted"}
+    return {"error": "Item not found"}

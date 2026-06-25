@@ -1,0 +1,23 @@
+# 1. Ignore dependencies (huge folders downloaded by your system)
+node_modules/
+vendor/
+
+# 2. Ignore private environment variables (NEVER push secrets/passwords!)
+.env
+.env.local
+config/secrets.json
+
+# 3. Ignore local editor settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.__pycache__
+# 4. Ignore operating system junk files
+.DS_Store
+Thumbs.db
+
+# 5. Ignore build outputs and log files
+dist/
+build/
+*.log
