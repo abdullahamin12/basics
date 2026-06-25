@@ -1,16 +1,16 @@
 from fastapi import FastAPI
-
-app = FastAPI()
-
-items = [
-    {"id": 1, "name": "Ali", "age": 20},
-    {"id": 2, "name": "Sara", "age": 22}
+from pydantic import BaseModel
+app=FastAPI()
+class Todo(BaseModel):
+    title:str
+    done:bool=False
+todos=[
+    {"id": 1, "title": "Learn FastAPI", "done": False},
+    {"id": 2, "title": "Practice CRUD", "done": True}
 ]
+todo = Todo(title="Buy milk", done=False)
+print( todo.model_dump() )
 
-@app.delete("/items/{item_id}")
-def delete_item(item_id: int):
-    for item in items:
-        if item["id"] == item_id:
-            items.remove(item)
-            return {"message": "Item deleted"}
-    return {"error": "Item not found"}
+
+
+
