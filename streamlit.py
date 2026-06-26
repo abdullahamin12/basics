@@ -36,6 +36,25 @@ with st.form("DELETE TODO FORM"):
                 st.error("Enter a valid number")
         else:
             st.warning("Please tick the checkbox")
+with st.form("UPDATE TODO"):
+
+    update_id = st.text_input("which to update")
+    Warning = st.checkbox("really do you wanna update")
+    update_clicked = st.form_submit_button("update permanentally")
+
+    if update_clicked:
+        if Warning:
+            if update_id.isdigit():
+                response = requests.put(f"{URL}/todos/{int(delete_id)}")
+                if response.status_code == 200:
+                    st.success("Todo updated")
+                    st.rerun()
+                else:
+                    st.error("update failed")
+            else:
+                st.error("Enter a valid number")
+        else:
+            st.warning("Please tick the checkbox")
 
 responce=requests.get(f"{URL}/todos/")
 if responce.status_code==200:
