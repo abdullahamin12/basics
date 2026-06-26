@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 
-URL = "http://127.0.0.1:8000"
+URL = "http://backend:8000"
 
 st.title("Todo App")
 st.write("Connected to FastAPI backend")
